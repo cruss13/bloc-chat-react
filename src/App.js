@@ -17,7 +17,7 @@ import RoomList from './components/RoomList';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { rooms: [] }
+    
   }
 
   handleRooms = (rooms) => {
@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Bloc Chat</h1>
-        <RoomList rooms={this.handleRooms} />
+        <RoomList rooms={this.handleRooms} firebase={firebase} />
       </div>
     );
   }

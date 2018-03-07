@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import App from './App.js';
+import App from './../App.js';
 
 class RoomList extends Component {
-  constructor(prop) {
+  constructor(props) {
     super(props);
       this.state = { rooms: [] };
       this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -21,8 +21,8 @@ class RoomList extends Component {
       <div className='roomList'>
         <ul>
           { this.state.rooms.map( (room, key) =>
-            <room key={ room.key} />
-          )};
+            <room key={ room.key } />
+          )}
         </ul>
       </div>
     );
