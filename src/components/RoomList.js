@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class RoomList extends Component {
+export class RoomList extends Component {
   constructor(props) {
     super(props);
       this.state = { rooms: [] };
@@ -16,16 +16,11 @@ class RoomList extends Component {
   }
 
   render() {
+    const roomList = this.state.rooms.map((room) =>
+      <li key={room.key}>{room.name}</li>
+  );
     return (
-      <div className='roomList'>
-        <ul>
-          { this.state.rooms.map( (room, key) =>
-            <room key={ room.key }/>
-          )}
-        </ul>
-      </div>
+      <ul>{roomList}</ul>
     );
   }
 }
-
-export default RoomList;

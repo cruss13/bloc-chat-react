@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
-import RoomList from './components/RoomList';
+import { RoomList } from './components/RoomList';
 
 // Initialize Firebase
   var config = {
@@ -15,19 +15,11 @@ import RoomList from './components/RoomList';
   firebase.initializeApp(config);
 
 class App extends Component {
-  //constructor(props) {
-    //super(props);
-  //}
-
-  handleRooms = (rooms) => {
-    this.setState({rooms: rooms});
-  }
-
   render() {
     return (
       <div className="App">
         <h1>Bloc Chat</h1>
-        <RoomList rooms={this.handleRooms} firebase={firebase} />
+        <RoomList firebase={firebase} />
       </div>
     );
   }
