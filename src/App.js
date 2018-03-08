@@ -15,10 +15,9 @@ import RoomList from './components/RoomList';
   firebase.initializeApp(config);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    
-  }
+  //constructor(props) {
+    //super(props);
+  //}
 
   handleRooms = (rooms) => {
     this.setState({rooms: rooms});

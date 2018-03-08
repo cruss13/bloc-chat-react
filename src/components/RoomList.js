@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import App from './../App.js';
 
 class RoomList extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class RoomList extends Component {
       <div className='roomList'>
         <ul>
           { this.state.rooms.map( (room, key) =>
-            <room key={ room.key } />
+            <room key={ room.key }/>
           )}
         </ul>
       </div>
