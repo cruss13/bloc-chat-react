@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export class RoomList extends Component {
   constructor(props) {
     super(props);
-      this.state = { rooms: [] };
+      this.state = { name: '', rooms: [] };
       this.roomsRef = this.props.firebase.database().ref('rooms');
   }
 
@@ -15,12 +15,28 @@ export class RoomList extends Component {
     });
   }
 
+  createRoom(e) {
+    e.preventDefault();
+    this.roomsRef.push({ name: this.state.name });
+    this.setState({ name: '' });
+  }
+
+  handleChange(e) {
+    this.setState({ name: e.target.value })
+  }
+
   render() {
     const roomList = this.state.rooms.map((room) =>
       <li key={room.key}>{room.name}</li>
   );
     return (
-      <ul>{roomList}</ul>
+      <div id="roomListData">
+        <ul>{roomList}</ul>
+        <form onSubmit={ (e) => this.createRoom(e) }>
+          <input type='text' value={ this.state.name } placeholder='Enter New Room Name Here' onChange={ (e) => this.handleChange(e) }/>
+          <input type='submit' />
+        </form>
+      </div>
     );
   }
 }
