@@ -51,16 +51,21 @@ export class MessageList extends Component {
     const messageList = (
       this.state.messages.map((message) => {
         if (message.roomId === activeRoom) {
-          return <li key={message.key}>{message.content}</li>
+          return <li key={message.key}><span className="messages">{message.content}</span><span className="timeStamp">{message.sentAt}</span></li>
         }
         return null;
       })
     );
 
+
+
+
     return (
       <div>
-        <div>{messageBar}</div>
-        <div>{messageList}</div>
+        <div>
+          <span>{messageList}</span>
+        </div>
+          <div>{messageBar}</div>
       </div>
     );
   }
