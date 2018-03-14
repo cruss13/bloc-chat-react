@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export class MessageList extends Component {
   constructor(props) {
     super(props);
-      this.state = { username: '', content: '', sentAt: '', roomId: '', messages: [] }
+      this.state = { user: '', content: '', sentAt: '', roomId: '', messages: [] }
       this.messagesRef = this.props.firebase.database().ref('messages');
       this.handleChange = this.handleChange.bind(this);
       this.createMessage = this.createMessage.bind(this);
@@ -12,7 +12,7 @@ export class MessageList extends Component {
   handleChange(e) {
     e.preventDefault();
     this.setState({
-      username: "user",
+      user: 'user',
       content: e.target.value,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId: this.props.activeRoom
@@ -22,12 +22,12 @@ export class MessageList extends Component {
   createMessage(e) {
     e.preventDefault();
     this.messagesRef.push({
-      username: this.state.username,
+      user: this.state.user,
       content: this.state.content,
       sentAt: this.state.sentAt,
       roomId: this.state.roomId
     });
-    this.setState({ username: '', content: '', sentAt: '', roomId: ''});
+    this.setState({ user: '', content: '', sentAt: '', roomId: ''});
   }
 
   componentDidMount() {
@@ -56,9 +56,6 @@ export class MessageList extends Component {
         return null;
       })
     );
-
-
-
 
     return (
       <div>
