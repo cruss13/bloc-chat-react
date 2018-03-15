@@ -31,8 +31,11 @@ export class User extends Component {
     return (
       <div>
         <h2>Hello, {this.props.greeting}</h2>
-        <button id='userSignInButton' onClick={this.signIn}>Sign In</button>
-        <button id='userSignOutButton' onClick={this.signOut}>Sign Out</button>
+        { this.props.greeting === "Guest" ?
+          <button id='userSignInButton' onClick={this.signIn}>Sign In</button>
+          :
+          <button id='userSignOutButton' onClick={this.signOut}>Sign Out</button>
+        }
       </div>
     )
   }

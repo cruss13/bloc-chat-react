@@ -12,7 +12,7 @@ export class MessageList extends Component {
   handleChange(e) {
     e.preventDefault();
     this.setState({
-      user: 'user',
+      user: this.props.user,
       content: e.target.value,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId: this.props.activeRoom
@@ -51,7 +51,10 @@ export class MessageList extends Component {
     const messageList = (
       this.state.messages.map((message) => {
         if (message.roomId === activeRoom) {
-          return <li key={message.key}><span className="messages">{message.content}</span><span className="timeStamp">{message.sentAt}</span></li>
+          return <li key={message.key}>
+          <span className="userName">{message.user}: {message.content}</span>
+          <span className="timeStamp">{message.sentAt}</span>
+          </li>
         }
         return null;
       })
