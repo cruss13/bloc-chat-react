@@ -19,7 +19,11 @@ export class RoomList extends Component {
 
   createRoom(e) {
     e.preventDefault();
-    this.roomsRef.push({ name: this.state.name });
+    if (this.state.name === null) {
+    return null}
+    else if (this.state.name.length === 0) {
+    return null} else (
+    this.roomsRef.push({ name: this.state.name }));
     this.setState({ name: '' });
   }
 
@@ -31,6 +35,11 @@ export class RoomList extends Component {
     this.props.activeRoom(room);
   }
 
+  deleteRoom(roomKey) {
+    const room = this.props.firebase.database().ref('rooms/' + roomKey);
+    room.remove();
+  }
+
   render() {
     const roomForm = (
       <form onSubmit={this.createRoom}>
@@ -40,7 +49,9 @@ export class RoomList extends Component {
     );
 
     const roomList = this.state.rooms.map((room) =>
-      <li key={room.key} onClick= {(e) => this.selectRoom(room, e) } >{room.name}</li>
+      <li key={room.key} onClick= {(e) => this.selectRoom(room, e) } >{room.name}
+      <button id='deleteRoomButton' onClick={() => this.deleteRoom(room.key)}>Delete</button>
+      </li>
   );
     return (
       <div>
